@@ -40,7 +40,7 @@ app.post('/auth', function (request, response) {
     var password = request.body.password;
     console.log(login_cred(req.body.username, req.body.password));
     user_info = login_cred(req.body.username, req.body.password);
-    response.redirect('/auth');
+    response.redirect('/public/auth');
 });
 
 
