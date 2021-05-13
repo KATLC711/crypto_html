@@ -32,7 +32,7 @@ cred_info.push(nokkiu)
 
 
 app.get('/', function (request, response) {
-    response.sendFile(path.join(__dirname, '../public', 'index1.html'));
+    response.sendFile(path.join(__dirname, '../public', 'login.html'));
 });
 
 
