@@ -35,6 +35,36 @@ app.get('/', function (request, response) {
     response.sendFile(path.join(__dirname, '/public', 'login.html'));
 });
 
+app.post('/auth', function (request, response) {
+    var username = request.body.username;
+    var password = request.body.password;
+    console.log(login_cred(req.body.username, req.body.password));
+    user_info = login_cred(req.body.username, req.body.password);
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+function login_cred(username_from_post, password_from_post) {
+    var i;
+    for (i = 0; i < cred_info.length; i++) {
+        if (cred_info[i].username == username_from_post && cred_info[i].password == password_from_post) {
+            return [true, cred_info[i]];
+        }
+    }
+    return [false, ""];
+}
+
 
 
 app.use(function (req, res) {
