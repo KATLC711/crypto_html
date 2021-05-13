@@ -37,17 +37,19 @@ app.get('/', function (request, response) {
 
 
 app.get('/home', function (request, response) {
-
-    response.send('Welcome back!');
+    console.log(user_info)
+    response.sendFile(path.join(__dirname, '/public', 'home.html'));
 
 });
+
+
 
 app.post('/auth', function (request, response) {
     var username = request.body.username;
     var password = request.body.password;
-    console.log(login_cred(request.body.username, request.body.password));
     user_info = login_cred(request.body.username, request.body.password);
     if (user_info[0] == true) {
+        var context = user_info
         response.redirect('/home')
     } else {
         response.send('Wrong credential!')
