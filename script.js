@@ -46,7 +46,7 @@ app.post('/auth', function (request, response) {
     var username = request.body.username;
     var password = request.body.password;
     console.log(login_cred(request.body.username, request.body.password));
-    user_info = login_cred(request.body.username, requests.body.password);
+    user_info = login_cred(request.body.username, request.body.password);
     if (user_info[0] == true) {
         response.redirect('/home')
     } else {
