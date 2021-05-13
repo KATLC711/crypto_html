@@ -43,7 +43,10 @@ app.get('/home', function (request, response) {
 });
 
 app.post('/auth', function (request, response) {
-
+    var username = request.body.username;
+    var password = request.body.password;
+    console.log(login_cred(request.body.username, request.body.password));
+    user_info = login_cred(request.body.username, request.body.password);
     response.redirect('/home');
 });
 
