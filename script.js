@@ -45,7 +45,8 @@ app.post('/auth', function (request, response) {
         var context = user_info
         response.redirect('/home')
     } else {
-        response.send('Wrong credential!')
+        response.sendFile(path.join(__dirname, '/public', 'login.html'));
+        window.alert("Wrong Credentials");
     }
 });
 
