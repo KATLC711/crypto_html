@@ -1,10 +1,8 @@
 var express = require('express');
-
 var app = express();
 var handlebars = require('express-handlebars').create({ defaultLayout: 'main' });
 var bodyParser = require('body-parser');
-
-const path = require('path');
+var path = require('path');
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
