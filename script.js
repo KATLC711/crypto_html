@@ -36,25 +36,6 @@ app.get('/', function (request, response) {
 });
 
 
-app.get('/home', function (request, response) {
-    console.log(user_info)
-
-    var holdings = user_info[1].holdings
-    var amount = user_info[1].amount
-    var cryprolist = []
-
-    for (var i = 0; i < holdings.length; i++) {
-        cryprolist.push({ 'holdings': holdings[i], 'amount': amount[i] })
-    }
-
-    var context = []
-    context.cryprolist = cryprolist
-
-    res.render('home', context);
-
-});
-
-
 
 app.post('/auth', function (request, response) {
     var username = request.body.username;
@@ -66,6 +47,25 @@ app.post('/auth', function (request, response) {
     } else {
         response.send('Wrong credential!')
     }
+});
+
+
+
+
+app.get('/home', function (request, response) {
+    console.log(user_info)
+
+    var holdings = user_info[1].holdings
+    var amount = user_info[1].amount
+    var cryprolist = []
+
+    for (var i = 0; i < holdings.length; i++) {
+        cryprolist.push({ 'holdings': holdings[i], 'amount': amount[i] })
+    }
+    var context = []
+    context.cryprolist = cryprolist
+    response.render('home', context);
+
 });
 
 
