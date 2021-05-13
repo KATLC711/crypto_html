@@ -50,7 +50,7 @@ app.get('/home', function (request, response) {
     var context = []
     context.cryprolist = cryprolist
 
-    response.sendFile(path.join(__dirname, '/public', 'home.html'), context);
+    res.render('login', context);
 
 });
 
