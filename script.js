@@ -50,7 +50,7 @@ app.get('/home', function (request, response) {
     var context = []
     context.cryprolist = cryprolist
 
-    res.render('login', context);
+    res.render('home', context);
 
 });
 
