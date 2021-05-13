@@ -35,12 +35,19 @@ app.get('/', function (request, response) {
     response.sendFile(path.join(__dirname, '/public', 'login.html'));
 });
 
+
+app.get('/home', function (request, response) {
+
+    response.send('Welcome back!');
+
+});
+
 app.post('/auth', function (request, response) {
     var username = request.body.username;
     var password = request.body.password;
     console.log(login_cred(req.body.username, req.body.password));
     user_info = login_cred(req.body.username, req.body.password);
-    response.redirect('/public/auth');
+    response.redirect('/home');
 });
 
 
