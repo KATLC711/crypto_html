@@ -3,7 +3,11 @@ var app = express();
 var handlebars = require('express-handlebars').create({ defaultLayout: 'main' });
 var bodyParser = require('body-parser');
 var path = require('path');
-
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -43,6 +47,7 @@ app.post('/auth', function (request, response) {
     user_info = login_cred(request.body.username, request.body.password);
     if (user_info[0] == true) {
         var context = user_info
+        request.session.loggedin = true
         response.redirect('/home')
     } else {
         response.redirect('/')
@@ -53,19 +58,26 @@ app.post('/auth', function (request, response) {
 
 
 app.get('/home', function (request, response) {
-    console.log(user_info)
 
-    var holdings = user_info[1].holdings
-    var amount = user_info[1].amount
-    var cryprolist = []
+    if (request.session.loggedin) {
 
-    for (var i = 0; i < holdings.length; i++) {
-        cryprolist.push({ 'holdings': holdings[i], 'amount': amount[i] })
+        console.log(user_info)
+
+        var holdings = user_info[1].holdings
+        var amount = user_info[1].amount
+        var cryprolist = []
+
+        for (var i = 0; i < holdings.length; i++) {
+            cryprolist.push({ 'holdings': holdings[i], 'amount': amount[i] })
+        }
+        var context = []
+        context.cryprolist = cryprolist
+        response.render('home', context);
+    } else {
+        response.send('Please log in to view this page!')
     }
-    var context = []
-    context.cryprolist = cryprolist
-    response.render('home', context);
 
+    response.end()
 });
 
 
