@@ -73,12 +73,12 @@ app.get('/home', function (request, response) {
         }
         var context = []
         context.cryprolist = cryprolist
-
+        response.render('home', context);
     } else {
         response.redirect('/')
     }
 
-    response.end()
+
 });
 
 
