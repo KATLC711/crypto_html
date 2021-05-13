@@ -4,7 +4,6 @@ var handlebars = require('express-handlebars').create({ defaultLayout: 'main' })
 var bodyParser = require('body-parser');
 var path = require('path');
 var session = require('express-session');
-var window = require('window');
 app.use(session({
     secret: 'secret',
     resave: true,
@@ -76,7 +75,6 @@ app.get('/home', function (request, response) {
         context.cryprolist = cryprolist
         response.render('home', context);
     } else {
-        window.alert("sometext");
         response.redirect('/')
     }
 
