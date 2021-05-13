@@ -38,7 +38,19 @@ app.get('/', function (request, response) {
 
 app.get('/home', function (request, response) {
     console.log(user_info)
-    response.sendFile(path.join(__dirname, '/public', 'home.html'));
+
+    var holdings = user_info[1].holdings
+    var amount = user_info[1].amount
+    var cryprolist = []
+
+    for (var i = 0; i < holdings.length; i++) {
+        cryprolist.push({ 'holdings': holdings[i], 'amount': amount[i] })
+    }
+
+    var context = []
+    context.cryprolist = cryprolist
+
+    response.sendFile(path.join(__dirname, '/public', 'home.html'), context);
 
 });
 
