@@ -1,0 +1,22 @@
+<h3>Here are your cryptocurrency holdings.</h3>
+<table border="border: 1px solid #333">
+    <thead>
+        <tr>
+            <th>Crypto Name</th>
+            <th>Amount</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each cryprolist}}
+        <tr>
+            <td>{{this.holdings}}</td>
+            <td>{{this.amount}}</td>
+            <td>{{this.price}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+
+</table>
+
+<a href="/">Click here to logout</a>
